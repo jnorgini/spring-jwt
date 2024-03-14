@@ -12,8 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.norgini.dtos.RegisterDTO;
 import com.norgini.entities.User;
+import com.norgini.repositories.RefreshTokenRepository;
 import com.norgini.repositories.UserRepository;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 
 @Service
@@ -21,6 +23,7 @@ import lombok.AllArgsConstructor;
 public class UserService implements UserDetailsService {
 
 	private UserRepository repository;
+	private RefreshTokenRepository refreshTokenRepository;
 	private ModelMapper mapper;
 
 	@Transactional
@@ -45,6 +48,9 @@ public class UserService implements UserDetailsService {
 
 	@Transactional
 	public void delete(Long id) {
+		User user = repository.findById(id)
+				.orElseThrow(() -> new EntityNotFoundException("User not found with id: " + id));
+		refreshTokenRepository.deleteByUser(user);
 		repository.deleteById(id);
 	}
 
