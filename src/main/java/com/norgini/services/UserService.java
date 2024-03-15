@@ -44,10 +44,10 @@ public class UserService implements UserDetailsService {
 
 	@Transactional
 	public void delete(Long id) {
-		User user = this.find(id);
-		refreshTokenRepository.deleteByUser(user);
-		repository.deleteById(id);
+	    refreshTokenRepository.deleteById(id); 
+	    repository.deleteById(id);
 	}
+
 
 	public User find(Long id) {
 		return repository.findById(id).get();
