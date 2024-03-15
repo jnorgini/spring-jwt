@@ -15,7 +15,6 @@ import com.norgini.entities.User;
 import com.norgini.repositories.RefreshTokenRepository;
 import com.norgini.repositories.UserRepository;
 
-import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 
 @Service
@@ -36,20 +35,16 @@ public class UserService implements UserDetailsService {
 
 	@Transactional
 	public User update(Long id, RegisterDTO registerDTO) {
-		User existingUser = repository.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("User not found with id: " + id));
+		User existingUser = this.find(id);
 		mapper.map(registerDTO, existingUser);
-		if (registerDTO.getPassword() != null) {
-			String password = new BCryptPasswordEncoder().encode(registerDTO.getPassword());
-			existingUser.setPassword(password);
-		}
+		String password = new BCryptPasswordEncoder().encode(registerDTO.getPassword());
+		existingUser.setPassword(password);
 		return repository.save(existingUser);
 	}
 
 	@Transactional
 	public void delete(Long id) {
-		User user = repository.findById(id)
-				.orElseThrow(() -> new EntityNotFoundException("User not found with id: " + id));
+		User user = this.find(id);
 		refreshTokenRepository.deleteByUser(user);
 		repository.deleteById(id);
 	}

@@ -43,7 +43,7 @@ public class LoginController {
 	}
 
 	@PostMapping("/refresh")
-	public ResponseEntity<TokenDTO> refreshtoken(@Valid @RequestBody RefreshTokenDTO request) {
+	public ResponseEntity<TokenDTO> refreshtoken(@RequestBody @Valid RefreshTokenDTO request) {
 		String requestRefreshToken = request.getRefreshToken();
 		return refreshTokenService.findByToken(requestRefreshToken).map(refreshTokenService::verifyExpiration)
 				.map(RefreshToken::getUser).map(user -> getToken(requestRefreshToken, user))
