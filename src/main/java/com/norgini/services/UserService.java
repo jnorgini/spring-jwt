@@ -3,6 +3,8 @@ package com.norgini.services;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.norgini.dtos.RegisterDTO;
 import com.norgini.entities.User;
+import com.norgini.exceptions.UnauthorizedOperationException;
 import com.norgini.repositories.RefreshTokenRepository;
 import com.norgini.repositories.UserRepository;
 
@@ -35,6 +38,11 @@ public class UserService implements UserDetailsService {
 
 	@Transactional
 	public User update(Long id, RegisterDTO registerDTO) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		var currentUser = (User) auth.getPrincipal();
+		if (!currentUser.getId().equals(id)) {
+			throw new UnauthorizedOperationException("You do not have permission to update this user.");
+		}
 		User existingUser = this.find(id);
 		mapper.map(registerDTO, existingUser);
 		String password = new BCryptPasswordEncoder().encode(registerDTO.getPassword());
@@ -44,10 +52,15 @@ public class UserService implements UserDetailsService {
 
 	@Transactional
 	public void delete(Long id) {
-	    refreshTokenRepository.deleteById(id); 
-	    repository.deleteById(id);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		var currentUser = (User) auth.getPrincipal();
+		if (!currentUser.getId().equals(id)) {
+			throw new UnauthorizedOperationException("You do not have permission to delete this user.");
+		}
+		User user = this.find(id);
+		refreshTokenRepository.deleteByUser(user);
+		repository.deleteById(id);
 	}
-
 
 	public User find(Long id) {
 		return repository.findById(id).get();

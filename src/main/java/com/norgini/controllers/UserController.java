@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.norgini.dtos.RegisterDTO;
 import com.norgini.entities.User;
+import com.norgini.exceptions.UnauthorizedOperationException;
 import com.norgini.services.UserService;
 
 import jakarta.validation.Valid;
@@ -47,8 +48,12 @@ public class UserController {
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id) {
-		service.delete(id);
-		return ResponseEntity.noContent().build();
+		try {
+			service.delete(id);
+			return ResponseEntity.noContent().build();
+		} catch (UnauthorizedOperationException e) {
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
+		}
 	}
 
 	@GetMapping
