@@ -3,6 +3,7 @@ package com.norgini.services;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.lang.NonNull;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -51,7 +52,7 @@ public class UserService implements UserDetailsService {
 	}
 
 	@Transactional
-	public void delete(Long id) {
+	public void delete(@NonNull Long id) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		var currentUser = (User) auth.getPrincipal();
 		if (!currentUser.getId().equals(id)) {
@@ -62,7 +63,7 @@ public class UserService implements UserDetailsService {
 		repository.deleteById(id);
 	}
 
-	public User find(Long id) {
+	public User find(@NonNull Long id) {
 		return repository.findById(id).get();
 	}
 
