@@ -38,7 +38,7 @@ public class UserService implements UserDetailsService {
 	}
 
 	@Transactional
-	public User update(Long id, RegisterDTO registerDTO) {
+	public User update(@NonNull Long id, RegisterDTO registerDTO) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		var currentUser = (User) auth.getPrincipal();
 		if (!currentUser.getId().equals(id)) {
