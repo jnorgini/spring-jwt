@@ -1,8 +1,10 @@
+<img src="https://engineering.giphy.com/wp-content/uploads/2017/06/api.gif" width="900" height="493">
+
 # REST API with Authentication (JWT)
 
 This project was generated with [Spring Boot]()
 
-## About
+## About this project
 
 *This project implements an authenticated registration and login system.*
 
@@ -15,19 +17,20 @@ This project was generated with [Spring Boot]()
 3. Set the value to `Bearer` followed by a space and then your token.
 
 ## Technologies
-> - [Java](https://www.java.com/)
-> - [Maven](https://maven.apache.org/) version 4.0.0
-> - [Spring Web](https://spring.io/projects/spring-web)
-> - [JPA](https://www.oracle.com/java/technologies/persistence-jsp.html)
-> - Database development [MySQL](https://www.mysql.com/)
-> - [Lombok](https://projectlombok.org/)
-> - [JWT](https://jwt.io/) version 4.4.0
-> - [Spring Security](https://spring.io/projects/spring-security)
-> - [Validation](https://docs.oracle.com/javaee/7/tutorial/bean-validation.htm)
-> - [Modelmapper](http://modelmapper.org/) version 3.1.1
+```diff
++ Java
++ Maven - version 4.0.0
++ Spring Web
++ JPA
++ Database development MySQL
++ Lombok
++ JWT - version 4.4.0
++ Spring Security 
++ Validation
++ Modelmapper - version 3.1.1
+```
 
-
-## Development server
+## Development in localhost
 
 - [x] [*git bash $*](https://git-scm.com/) `git clone https://github.com/jnorgini/spring-jwt`
 
@@ -58,15 +61,16 @@ This project was generated with [Spring Boot]()
 </div>
 
 
-## In progress
+## In progress...
 
-📌 Deployment with [cron job](https://cron-job.org/en/) rules...
+📌 Deployment with [cron job](https://cron-job.org/en/) rules
 
 ## Developed by
 
 🛠️ Juliana Norgini
 
-## Contact:
+## Contact
 
 💼 [LinkedIn]()
+
 📧 [E-mail]()
