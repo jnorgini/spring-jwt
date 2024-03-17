@@ -41,19 +41,19 @@ This project was generated with [Spring Boot]()
 
 ## Automation testing with Postman
 
-<div style="display:flex;">
-  <img src="https://github.com/jnorgini/jnorgini/assets/114461353/2bf58641-ae62-488e-97cc-7d6494cb903a" width="500" height="274" style="margin-right: 5px;">
-  <img src="https://github.com/jnorgini/jnorgini/assets/114461353/9d8879ef-11c5-4d81-9696-83231344bc3e" width="500" height="274" style="margin-left: 5px;">
+<div>
+  <img src="https://github.com/jnorgini/jnorgini/assets/114461353/2bf58641-ae62-488e-97cc-7d6494cb903a" width="800" height="439" style="margin-right: 5px;">
+  <img src="https://github.com/jnorgini/jnorgini/assets/114461353/9d8879ef-11c5-4d81-9696-83231344bc3e" width="800" height="395" style="margin-left: 5px;">
 </div>
 
-<div style="display:flex; margin-top: 5px;">
-  <img src="https://github.com/jnorgini/jnorgini/assets/114461353/ef83dc5d-1b68-486b-83cd-33652050b0af" width="500" height="274" style="margin-right: 5px;">
-  <img src="https://github.com/jnorgini/jnorgini/assets/114461353/05a57cc0-45e5-4e6e-b263-29aec0695fe2" width="500" height="274" style="margin-left: 5px;">
+<div style="margin-top: 5px;">
+  <img src="https://github.com/jnorgini/jnorgini/assets/114461353/ef83dc5d-1b68-486b-83cd-33652050b0af" width="800" height="480" style="margin-right: 5px;">
+  <img src="https://github.com/jnorgini/jnorgini/assets/114461353/05a57cc0-45e5-4e6e-b263-29aec0695fe2" width="800" height="461" style="margin-left: 5px;">
 </div>
 
-<div style="display:flex; margin-top: 5px;">
-  <img src="https://github.com/jnorgini/jnorgini/assets/114461353/d19a0e91-fb5b-4285-ac71-cc1f27261295" width="500" height="274" style="margin-right: 5px;">
-  <img src="https://github.com/jnorgini/jnorgini/assets/114461353/e692c279-681d-400b-bd3a-5bc91c5edcb6" width="500" height="274" style="margin-left: 5px;">
+<div style="margin-top: 5px;">
+  <img src="https://github.com/jnorgini/jnorgini/assets/114461353/d19a0e91-fb5b-4285-ac71-cc1f27261295" width="800" height="461" style="margin-right: 5px;">
+  <img src="https://github.com/jnorgini/jnorgini/assets/114461353/e692c279-681d-400b-bd3a-5bc91c5edcb6" width="800" height="432" style="margin-left: 5px;">
 </div>
 
 <div style="margin-top: 5px;">
