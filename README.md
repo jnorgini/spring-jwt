@@ -73,6 +73,6 @@ This project was generated with [Spring Boot]()
 
 ## Contact
 
-💼 [LinkedIn]()
+💼 [LinkedIn](https://www.linkedin.com/in/juliana-norgini/)
 
-📧 [E-mail]()
+📧 [E-mail](mailto:jnorgini@gmail.com)
