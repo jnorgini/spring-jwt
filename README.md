@@ -34,6 +34,8 @@ This project was generated with [Spring Boot]()
 
 - [x] [*git bash $*](https://git-scm.com/) `git clone https://github.com/jnorgini/spring-jwt`
 
+- [x] in the cloned project directory [*git bash $*]() `git checkout develop`
+
 - [x] [VS Code](https://code.visualstudio.com/) open the project and start `SpringJwtApplication.java` after adjusting the database settings in `application.properties`
 
 - [x] [STS4](https://spring.io/tools) import maven project and start local server after adjusting database settings in `application.properties`
