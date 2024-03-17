@@ -40,6 +40,9 @@ This project was generated with [Spring Boot]()
 
 - [x] [STS4](https://spring.io/tools) import maven project and start local server after adjusting database settings in `application.properties`
 
+## Project structure
+
+![Captura de tela 2024-03-17 200605](https://github.com/jnorgini/spring-jwt/assets/114461353/58eb4711-0c7e-4351-a1a3-12197f5926d4)
 
 ## Automation testing with Postman
 
@@ -61,7 +64,6 @@ This project was generated with [Spring Boot]()
 <div style="margin-top: 5px;">
   <img src="https://github.com/jnorgini/jnorgini/assets/114461353/48bb223f-239b-4623-8231-f5f6b8cadf8a" width="800" height="267" style="margin-bottom: 10px;">
 </div>
-
 
 ## In progress...
 
