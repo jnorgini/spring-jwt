@@ -1,5 +1,3 @@
-<img src="https://engineering.giphy.com/wp-content/uploads/2017/06/api.gif" width="900" height="493">
-
 # REST API with Authentication (JWT)
 
 This project was generated with [Spring Boot]()
@@ -69,7 +67,7 @@ With the `users/me` endpoint it is possible to receive information about the aut
 
 ## In progress...
 
-📌 Deployment and [cron jobs](https://cron-job.org/en/)
+📌 Deployment and [cron jobs](https://cron-job.org/en/) 
 
 ## Developed by
 
