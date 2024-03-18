@@ -6,9 +6,11 @@ This project was generated with [Spring Boot]()
 
 ## About this project
 
-*This project implements an authenticated registration and login system.*
+*This project is a secure login and registration system with JWT authentication and validations.*
 
-**Note:** Only authenticated users can edit their own information. Authentication is done using a token received after login.
+**Note:** Only authenticated users can update or delete their own accounts. 
+Authentication is done using a token received after login.
+With the `users/me` endpoint it is possible to receive information about the authenticated user.
 
 #### Example:
 
@@ -32,9 +34,9 @@ This project was generated with [Spring Boot]()
 
 ## Development in localhost
 
-- [x] [*git bash $*](https://git-scm.com/) `git clone https://github.com/jnorgini/spring-jwt`
+- [x] [*$*](https://git-scm.com/) `git clone https://github.com/jnorgini/spring-jwt`
 
-- [x] in the cloned project directory [*git bash $*]() `git checkout develop`
+- [x] in the cloned project directory [*$*]() `git checkout develop`
 
 - [x] [VS Code](https://code.visualstudio.com/) open the project and start `SpringJwtApplication.java` after adjusting the database settings in `application.properties`
 
