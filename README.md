@@ -67,7 +67,7 @@ This project was generated with [Spring Boot]()
 
 ## In progress...
 
-📌 Deployment with [cron job](https://cron-job.org/en/) rules
+📌 Deployment and [cron jobs](https://cron-job.org/en/)
 
 ## Developed by
 
