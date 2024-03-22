@@ -2,6 +2,7 @@ package com.norgini.config;
 
 import java.io.IOException;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,18 +28,23 @@ public class SecurityFilter extends OncePerRequestFilter {
 	private RefreshTokenRepository tokenRepository;
 
 	@Override
-	protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain)
-			throws ServletException, IOException {
+	protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response,
+			@NonNull FilterChain filterChain) throws ServletException, IOException {
 		var tokenJWT = tokenRecovery(request);
 
 		if (tokenJWT != null) {
-			var subject = service.getUsername(tokenJWT);
-			tokenRepository.findByToken(tokenJWT).orElseThrow();
-			var usuario = repository.findByUsername(subject);
+			try {
+				var subject = service.getUsername(tokenJWT);
+				tokenRepository.findByToken(tokenJWT).orElseThrow();
+				var usuario = repository.findByUsername(subject);
 
-			var authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
+				var authentication = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
 
-			SecurityContextHolder.getContext().setAuthentication(authentication);
+				SecurityContextHolder.getContext().setAuthentication(authentication);
+			} catch (RuntimeException e) {
+				response.setStatus(HttpStatus.UNAUTHORIZED.value());
+				return;
+			}
 		}
 		filterChain.doFilter(request, response);
 
