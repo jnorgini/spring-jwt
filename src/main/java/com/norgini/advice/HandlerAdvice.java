@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import com.norgini.dtos.ErrorDTO;
 import com.norgini.exceptions.UnauthorizedOperationException;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @RestControllerAdvice
 public class HandlerAdvice {
 
@@ -31,6 +33,12 @@ public class HandlerAdvice {
 	@ExceptionHandler(UnauthorizedOperationException.class)
 	public ResponseEntity<?> unauthorized(UnauthorizedOperationException exception) {
 		return new ResponseEntity<>(exception.getMessage(), HttpStatus.FORBIDDEN);
+	}
+
+	@ExceptionHandler(EntityNotFoundException.class)
+	public ResponseEntity<?> handleEntityNotFoundException(EntityNotFoundException ex) {
+		ErrorDTO errorDTO = new ErrorDTO("Entity not found", ex.getMessage());
+		return new ResponseEntity<>(errorDTO, HttpStatus.NOT_FOUND);
 	}
 
 	private ErrorDTO convertEntityToDTO(FieldError error) {
