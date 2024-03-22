@@ -41,7 +41,8 @@ public class UserController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<RegisterDTO> update(@PathVariable @NonNull Long id, @RequestBody @Valid RegisterDTO registerDTO) {
+	public ResponseEntity<RegisterDTO> update(@PathVariable @NonNull Long id,
+			@RequestBody @Valid RegisterDTO registerDTO) {
 		User updatedUser = service.update(id, registerDTO);
 		RegisterDTO updatedUserDTO = mapper.map(updatedUser, RegisterDTO.class);
 		return ResponseEntity.ok(updatedUserDTO);
