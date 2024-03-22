@@ -5,7 +5,6 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.lang.NonNull;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,7 +40,7 @@ public class UserController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<RegisterDTO> update(@PathVariable @NonNull Long id,
+	public ResponseEntity<RegisterDTO> update(@PathVariable Long id,
 			@RequestBody @Valid RegisterDTO registerDTO) {
 		User updatedUser = service.update(id, registerDTO);
 		RegisterDTO updatedUserDTO = mapper.map(updatedUser, RegisterDTO.class);
@@ -49,7 +48,7 @@ public class UserController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> delete(@PathVariable @NonNull Long id) {
+	public ResponseEntity<?> delete(@PathVariable Long id) {
 		try {
 			service.delete(id);
 			return ResponseEntity.noContent().build();
@@ -65,7 +64,7 @@ public class UserController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<User> getUser(@PathVariable @NonNull Long id) {
+	public ResponseEntity<User> getUser(@PathVariable Long id) {
 		User user = service.find(id);
 		return ResponseEntity.ok(user);
 	}

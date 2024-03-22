@@ -3,7 +3,6 @@ package com.norgini.services;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.lang.NonNull;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -38,7 +37,7 @@ public class UserService implements UserDetailsService {
 	}
 
 	@Transactional
-	public User update(@NonNull Long id, RegisterDTO registerDTO) {
+	public User update(Long id, RegisterDTO registerDTO) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		var currentUser = (User) auth.getPrincipal();
 		if (!currentUser.getId().equals(id)) {
@@ -52,7 +51,7 @@ public class UserService implements UserDetailsService {
 	}
 
 	@Transactional
-	public void delete(@NonNull Long id) {
+	public void delete(Long id) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		var currentUser = (User) auth.getPrincipal();
 		if (!currentUser.getId().equals(id)) {
@@ -63,7 +62,7 @@ public class UserService implements UserDetailsService {
 		repository.deleteById(id);
 	}
 
-	public User find(@NonNull Long id) {
+	public User find(Long id) {
 		return repository.findById(id).get();
 	}
 
@@ -75,7 +74,9 @@ public class UserService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = repository.findByUsername(username);
 		if (user != null) {
-			return org.springframework.security.core.userdetails.User.builder().password(user.getPassword())
+			return org.springframework.security.core.userdetails
+					.User.builder()
+					.password(user.getPassword())
 					.username(user.getUsername()).build();
 		} else {
 			throw new UsernameNotFoundException("");
