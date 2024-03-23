@@ -1,4 +1,4 @@
-package com.norgini.config;
+package com.norgini.configs;
 
 import java.io.IOException;
 

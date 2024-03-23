@@ -1,4 +1,4 @@
-package com.norgini.config;
+package com.norgini.configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -51,15 +51,15 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.POST, "/users").permitAll()
                         .requestMatchers(HttpMethod.POST, "/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/refresh").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/clients").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/clients").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/users/{id}").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/clients/{id}").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/clients/{id}").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/users/{id}").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/clients/{id}").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/clients/{id}").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/users").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/users/{id}").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/users/me").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/clients", "/clients/{id}").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/clients", "/clients/{id}").hasRole("ADMIN")
                         .anyRequest().permitAll())
                 .authenticationManager(authenticationManager)
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

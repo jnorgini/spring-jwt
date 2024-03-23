@@ -1,4 +1,4 @@
-package com.norgini.config;
+package com.norgini.configs;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

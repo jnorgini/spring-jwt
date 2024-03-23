@@ -1,4 +1,4 @@
-package com.norgini.config;
+package com.norgini.configs;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.NonNull;
