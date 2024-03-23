@@ -6,10 +6,10 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class LoginDTO {
+public class LoginRequest {
 
 	@NotBlank
-	private String login;
+	private String username;
 
 	@NotBlank
 	private String password;

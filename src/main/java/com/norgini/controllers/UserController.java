@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.norgini.dtos.RegisterDTO;
+import com.norgini.dtos.UserRequest;
 import com.norgini.entities.User;
 import com.norgini.exceptions.UnauthorizedOperationException;
 import com.norgini.services.UserService;
@@ -33,17 +33,17 @@ public class UserController {
 	private ModelMapper mapper;
 
 	@PostMapping
-	public ResponseEntity<RegisterDTO> create(@RequestBody @Valid RegisterDTO registerDTO) {
-		User createdUser = service.create(registerDTO);
-		RegisterDTO createdUserDTO = mapper.map(createdUser, RegisterDTO.class);
+	public ResponseEntity<UserRequest> create(@RequestBody @Valid UserRequest userRequest) {
+		User createdUser = service.create(userRequest);
+		UserRequest createdUserDTO = mapper.map(createdUser, UserRequest.class);
 		return ResponseEntity.status(HttpStatus.CREATED).body(createdUserDTO);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<RegisterDTO> update(@PathVariable Long id,
-			@RequestBody @Valid RegisterDTO registerDTO) {
-		User updatedUser = service.update(id, registerDTO);
-		RegisterDTO updatedUserDTO = mapper.map(updatedUser, RegisterDTO.class);
+	public ResponseEntity<UserRequest> update(@PathVariable Long id,
+			@RequestBody @Valid UserRequest userRequest) {
+		User updatedUser = service.update(id, userRequest);
+		UserRequest updatedUserDTO = mapper.map(updatedUser, UserRequest.class);
 		return ResponseEntity.ok(updatedUserDTO);
 	}
 

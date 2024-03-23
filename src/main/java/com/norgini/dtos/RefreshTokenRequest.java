@@ -1,5 +1,6 @@
 package com.norgini.dtos;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,9 +8,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ErrorDTO {
-	
-	private String field;
-	private String error;
+public class RefreshTokenRequest {
+
+	@NotBlank
+	private String refreshToken;
 
 }

@@ -11,7 +11,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.norgini.dtos.ErrorDTO;
+import com.norgini.dtos.ErrorResponse;
 import com.norgini.exceptions.UnauthorizedOperationException;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -38,18 +38,18 @@ public class HandlerAdvice {
 
 	@ExceptionHandler(EntityNotFoundException.class)
 	public ResponseEntity<?> handleEntityNotFoundException(EntityNotFoundException ex) {
-		ErrorDTO errorDTO = new ErrorDTO("Entity not found", ex.getMessage());
+		ErrorResponse errorDTO = new ErrorResponse("Entity not found", ex.getMessage());
 		return new ResponseEntity<>(errorDTO, HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(SQLIntegrityConstraintViolationException.class)
 	public ResponseEntity<?> repeatEmail(SQLIntegrityConstraintViolationException ex) {
-		ErrorDTO errorDTO = new ErrorDTO("Users and clients must have a unique email address.", ex.getMessage());
+		ErrorResponse errorDTO = new ErrorResponse("Users and clients must have a unique email address.", ex.getMessage());
 		return new ResponseEntity<>(errorDTO, HttpStatus.NOT_FOUND);
 	}
 
-	private ErrorDTO convertEntityToDTO(FieldError error) {
-		return new ErrorDTO(error.getField(), error.getDefaultMessage());
+	private ErrorResponse convertEntityToDTO(FieldError error) {
+		return new ErrorResponse(error.getField(), error.getDefaultMessage());
 	}
 
 }

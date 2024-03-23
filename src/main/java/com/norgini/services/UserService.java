@@ -12,7 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.norgini.dtos.RegisterDTO;
+import com.norgini.dtos.UserRequest;
 import com.norgini.entities.User;
 import com.norgini.exceptions.UnauthorizedOperationException;
 import com.norgini.repositories.RefreshTokenRepository;
@@ -29,23 +29,23 @@ public class UserService implements UserDetailsService {
 	private ModelMapper mapper;
 
 	@Transactional
-	public User create(RegisterDTO registerDTO) {
-		User user = mapper.map(registerDTO, User.class);
+	public User create(UserRequest userRequest) {
+		User user = mapper.map(userRequest, User.class);
 		String password = new BCryptPasswordEncoder().encode(user.getPassword());
 		user.setPassword(password);
 		return repository.save(user);
 	}
 
 	@Transactional
-	public User update(Long id, RegisterDTO registerDTO) {
+	public User update(Long id, UserRequest userRequest) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		var currentUser = (User) auth.getPrincipal();
 		if (!currentUser.getId().equals(id)) {
 			throw new UnauthorizedOperationException("You do not have permission to update this user.");
 		}
 		User existingUser = this.find(id);
-		mapper.map(registerDTO, existingUser);
-		String password = new BCryptPasswordEncoder().encode(registerDTO.getPassword());
+		mapper.map(userRequest, existingUser);
+		String password = new BCryptPasswordEncoder().encode(userRequest.getPassword());
 		existingUser.setPassword(password);
 		return repository.save(existingUser);
 	}

@@ -1,16 +1,14 @@
 package com.norgini.dtos;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class RefreshTokenDTO {
+public class LoginResponse {
 
-	@NotBlank
+	private String token;
 	private String refreshToken;
+	private String username;
 
 }
