@@ -12,7 +12,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class UserRequestDisassembler {
 
-	private final ModelMapper mapper;
+	private ModelMapper mapper;
 
 	public User toDomainObject(UserRequest userRequest) {
 		return mapper.map(userRequest, User.class);

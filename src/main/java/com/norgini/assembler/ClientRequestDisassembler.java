@@ -12,7 +12,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class ClientRequestDisassembler {
 
-	private final ModelMapper mapper;
+	private ModelMapper mapper;
 
 	public Client toDomainObject(ClientRequest clientRequest) {
 		return mapper.map(clientRequest, Client.class);

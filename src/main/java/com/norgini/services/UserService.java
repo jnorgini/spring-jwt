@@ -29,8 +29,8 @@ public class UserService implements UserDetailsService {
 
 	private UserRepository repository;
 	private RefreshTokenRepository refreshTokenRepository;
-	private final UserResponseAssembler userResponseAssembler;
-	private final UserRequestDisassembler userRequestDisassembler;
+	private UserResponseAssembler userResponseAssembler;
+	private UserRequestDisassembler userRequestDisassembler;
 
 	@Transactional
 	public UserResponse create(UserRequest userRequest) {

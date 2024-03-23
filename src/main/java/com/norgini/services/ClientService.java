@@ -20,8 +20,8 @@ import lombok.AllArgsConstructor;
 public class ClientService {
 
 	private ClientRepository repository;
-	private final ClientResponseAssembler clientResponseAssembler;
-	private final ClientRequestDisassembler clientRequestDisassembler;
+	private ClientResponseAssembler clientResponseAssembler;
+	private ClientRequestDisassembler clientRequestDisassembler;
 
 	public List<ClientResponse> findClients() {
 		List<Client> clients = repository.findAll();

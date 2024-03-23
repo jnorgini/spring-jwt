@@ -15,7 +15,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class UserResponseAssembler {
 
-	private final ModelMapper mapper;
+	private ModelMapper mapper;
 
 	public UserResponse toModel(User user) {
 		return mapper.map(user, UserResponse.class);
