@@ -20,7 +20,7 @@ import jakarta.persistence.EntityNotFoundException;
 public class HandlerAdvice {
 
 	@ExceptionHandler(NoSuchElementException.class)
-	public ResponseEntity<?> notFound(NoSuchElementException ex) {
+	public ResponseEntity<?> notFound() {
 		return new ResponseEntity<>("Object not found", HttpStatus.NOT_FOUND);
 	}
 
