@@ -1,5 +1,6 @@
 package com.norgini.advice;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -19,7 +20,7 @@ import jakarta.persistence.EntityNotFoundException;
 public class HandlerAdvice {
 
 	@ExceptionHandler(NoSuchElementException.class)
-	public ResponseEntity<?> notFound() {
+	public ResponseEntity<?> notFound(NoSuchElementException ex) {
 		return new ResponseEntity<>("Object not found", HttpStatus.NOT_FOUND);
 	}
 
@@ -38,6 +39,12 @@ public class HandlerAdvice {
 	@ExceptionHandler(EntityNotFoundException.class)
 	public ResponseEntity<?> handleEntityNotFoundException(EntityNotFoundException ex) {
 		ErrorDTO errorDTO = new ErrorDTO("Entity not found", ex.getMessage());
+		return new ResponseEntity<>(errorDTO, HttpStatus.NOT_FOUND);
+	}
+
+	@ExceptionHandler(SQLIntegrityConstraintViolationException.class)
+	public ResponseEntity<?> repeatEmail(SQLIntegrityConstraintViolationException ex) {
+		ErrorDTO errorDTO = new ErrorDTO("Users and clients must have a unique email address.", ex.getMessage());
 		return new ResponseEntity<>(errorDTO, HttpStatus.NOT_FOUND);
 	}
 
