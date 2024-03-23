@@ -13,11 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.norgini.assembler.ClientRequestDisassembler;
-import com.norgini.assembler.ClientResponseAssembler;
 import com.norgini.dtos.ClientRequest;
 import com.norgini.dtos.ClientResponse;
-import com.norgini.entities.Client;
 import com.norgini.services.ClientService;
 
 import jakarta.validation.Valid;
@@ -29,33 +26,29 @@ import lombok.AllArgsConstructor;
 public class ClientController {
 
 	private ClientService service;
-	private ClientResponseAssembler clientResponseAssembler;
-	private ClientRequestDisassembler clientRequestDisassembler;
 
 	@GetMapping
 	public ResponseEntity<List<ClientResponse>> getClients() {
-		List<Client> clients = service.findClients();
-		return ResponseEntity.ok(clientResponseAssembler.toCollectModel(clients));
+		List<ClientResponse> clients = service.findClients();
+		return ResponseEntity.ok(clients);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<ClientResponse> getClient(@PathVariable Long id) {
-		Client currentClient = service.find(id);
-		return ResponseEntity.ok(clientResponseAssembler.toModel(currentClient));
+		ClientResponse client = service.find(id);
+		return ResponseEntity.ok(client);
 	}
 
 	@PostMapping
-	public ResponseEntity<ClientResponse> create(@Valid @RequestBody ClientRequest clientRequest) {
-		Client newClient = service.create(clientRequestDisassembler.toDomainObject(clientRequest));
-		return ResponseEntity.status(HttpStatus.CREATED).body(clientResponseAssembler.toModel(newClient));
+	public ResponseEntity<ClientResponse> post(@Valid @RequestBody ClientRequest clientRequest) {
+		ClientResponse newClient = service.create(clientRequest);
+		return ResponseEntity.status(HttpStatus.CREATED).body(newClient);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<ClientResponse> update(@PathVariable Long id, @Valid @RequestBody ClientRequest clientRequest) {
-		Client currentClient = service.find(id);
-		clientRequestDisassembler.copyToDomainObject(clientRequest, currentClient);
-		Client updatedClient = service.create(currentClient);
-		return ResponseEntity.ok(clientResponseAssembler.toModel(updatedClient));
+	public ResponseEntity<ClientResponse> put(@PathVariable Long id, @Valid @RequestBody ClientRequest clientRequest) {
+		ClientResponse updatedClient = service.update(id, clientRequest);
+		return ResponseEntity.ok(updatedClient);
 	}
 
 	@DeleteMapping("/{id}")
