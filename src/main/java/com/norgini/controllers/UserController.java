@@ -2,7 +2,6 @@ package com.norgini.controllers;
 
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.norgini.dtos.UserRequest;
+import com.norgini.dtos.UserResponse;
 import com.norgini.entities.User;
 import com.norgini.exceptions.UnauthorizedOperationException;
 import com.norgini.services.UserService;
@@ -30,21 +30,17 @@ import lombok.AllArgsConstructor;
 public class UserController {
 
 	private UserService service;
-	private ModelMapper mapper;
 
 	@PostMapping
-	public ResponseEntity<UserRequest> create(@RequestBody @Valid UserRequest userRequest) {
-		User createdUser = service.create(userRequest);
-		UserRequest createdUserDTO = mapper.map(createdUser, UserRequest.class);
-		return ResponseEntity.status(HttpStatus.CREATED).body(createdUserDTO);
+	public ResponseEntity<UserResponse> create(@RequestBody @Valid UserRequest userRequest) {
+		UserResponse createdUser = service.create(userRequest);
+		return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<UserRequest> update(@PathVariable Long id,
-			@RequestBody @Valid UserRequest userRequest) {
-		User updatedUser = service.update(id, userRequest);
-		UserRequest updatedUserDTO = mapper.map(updatedUser, UserRequest.class);
-		return ResponseEntity.ok(updatedUserDTO);
+	public ResponseEntity<UserResponse> update(@PathVariable Long id, @RequestBody @Valid UserRequest userRequest) {
+		UserResponse updatedUser = service.update(id, userRequest);
+		return ResponseEntity.ok(updatedUser);
 	}
 
 	@DeleteMapping("/{id}")
@@ -58,14 +54,14 @@ public class UserController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<User>> getUsers() {
-		List<User> users = service.findAll();
+	public ResponseEntity<List<UserResponse>> getUsers() {
+		List<UserResponse> users = service.findAll();
 		return ResponseEntity.ok(users);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<User> getUser(@PathVariable Long id) {
-		User user = service.find(id);
+	public ResponseEntity<UserResponse> getUser(@PathVariable Long id) {
+		UserResponse user = service.find(id);
 		return ResponseEntity.ok(user);
 	}
 

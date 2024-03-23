@@ -2,7 +2,6 @@ package com.norgini.services;
 
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,9 +11,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.norgini.assembler.UserRequestDisassembler;
+import com.norgini.assembler.UserResponseAssembler;
 import com.norgini.dtos.UserRequest;
+import com.norgini.dtos.UserResponse;
 import com.norgini.entities.User;
 import com.norgini.exceptions.UnauthorizedOperationException;
+import com.norgini.exceptions.UserNotFoundException;
 import com.norgini.repositories.RefreshTokenRepository;
 import com.norgini.repositories.UserRepository;
 
@@ -26,28 +29,31 @@ public class UserService implements UserDetailsService {
 
 	private UserRepository repository;
 	private RefreshTokenRepository refreshTokenRepository;
-	private ModelMapper mapper;
+	private final UserResponseAssembler userResponseAssembler;
+	private final UserRequestDisassembler userRequestDisassembler;
 
 	@Transactional
-	public User create(UserRequest userRequest) {
-		User user = mapper.map(userRequest, User.class);
+	public UserResponse create(UserRequest userRequest) {
+		User user = userRequestDisassembler.toDomainObject(userRequest);
 		String password = new BCryptPasswordEncoder().encode(user.getPassword());
 		user.setPassword(password);
-		return repository.save(user);
+		User savedUser = repository.save(user);
+		return userResponseAssembler.toModel(savedUser);
 	}
 
 	@Transactional
-	public User update(Long id, UserRequest userRequest) {
+	public UserResponse update(Long id, UserRequest userRequest) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		var currentUser = (User) auth.getPrincipal();
 		if (!currentUser.getId().equals(id)) {
 			throw new UnauthorizedOperationException("You do not have permission to update this user.");
 		}
-		User existingUser = this.find(id);
-		mapper.map(userRequest, existingUser);
+		User existingUser = repository.findById(id).get();
+		userRequestDisassembler.copyToDomainObject(userRequest, existingUser);
 		String password = new BCryptPasswordEncoder().encode(userRequest.getPassword());
 		existingUser.setPassword(password);
-		return repository.save(existingUser);
+		User updatedUser = repository.save(existingUser);
+		return userResponseAssembler.toModel(updatedUser);
 	}
 
 	@Transactional
@@ -57,17 +63,20 @@ public class UserService implements UserDetailsService {
 		if (!currentUser.getId().equals(id)) {
 			throw new UnauthorizedOperationException("You do not have permission to delete this user.");
 		}
-		User user = this.find(id);
+		User user = repository.findById(id).get();
 		refreshTokenRepository.deleteByUser(user);
 		repository.deleteById(id);
 	}
 
-	public User find(Long id) {
-		return repository.findById(id).get();
+	public UserResponse find(Long id) {
+		User user = repository.findById(id)
+				.orElseThrow(() -> new UserNotFoundException(id));
+		return userResponseAssembler.toModel(user);
 	}
 
-	public List<User> findAll() {
-		return repository.findAll();
+	public List<UserResponse> findAll() {
+		List<User> users = repository.findAll();
+		return userResponseAssembler.toCollectModel(users);
 	}
 
 	@Override
