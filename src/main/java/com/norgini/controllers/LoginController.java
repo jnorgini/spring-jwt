@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.norgini.dtos.LoginRequest;
-import com.norgini.dtos.RefreshTokenRequest;
 import com.norgini.dtos.LoginResponse;
+import com.norgini.dtos.RefreshTokenRequest;
 import com.norgini.entities.RefreshToken;
 import com.norgini.entities.User;
 import com.norgini.services.RefreshTokenService;

@@ -25,8 +25,8 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/users")
 @AllArgsConstructor
+@RequestMapping("/users")
 public class UserController {
 
 	private UserService service;
