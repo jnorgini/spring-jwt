@@ -1,7 +1,5 @@
 package com.norgini.dtos;
 
-import com.norgini.entities.ClientStatus;
-
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -22,8 +20,12 @@ public class ClientRequest {
 	@Email
 	@NotBlank
 	private String email;
-
+	
 	@NotNull
-	private ClientStatus status;
+	private Long cpf;
+	
+	@NotNull
+	private Long phone;
+
 
 }
