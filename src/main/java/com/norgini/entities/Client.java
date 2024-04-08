@@ -26,9 +26,9 @@ public class Client {
 	private String email;
 
 	@Column(unique = true)
-	private Long cpf;
+	private String cpf;
 
 	@Column(unique = true)
-	private Long phone;
+	private String phone;
 
 }

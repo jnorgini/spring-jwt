@@ -12,7 +12,7 @@ public class ClientResponse {
 	private Long id;
 	private String name;
 	private String email;
-	private Long cpf;
-	private Long phone;
+	private String cpf;
+	private String phone;
 
 }
