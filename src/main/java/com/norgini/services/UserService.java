@@ -16,6 +16,7 @@ import com.norgini.assembler.UserResponseAssembler;
 import com.norgini.dtos.UserRequest;
 import com.norgini.dtos.UserResponse;
 import com.norgini.entities.User;
+import com.norgini.entities.UserStatus;
 import com.norgini.exceptions.UnauthorizedOperationException;
 import com.norgini.exceptions.UserNotFoundException;
 import com.norgini.repositories.RefreshTokenRepository;
@@ -37,6 +38,7 @@ public class UserService implements UserDetailsService {
 		User user = userRequestDisassembler.toDomainObject(userRequest);
 		String password = new BCryptPasswordEncoder().encode(user.getPassword());
 		user.setPassword(password);
+		user.setStatus(UserStatus.OFFLINE);
 		User savedUser = repository.save(user);
 		return userResponseAssembler.toModel(savedUser);
 	}
@@ -70,7 +72,7 @@ public class UserService implements UserDetailsService {
 
 	public UserResponse find(Long id) {
 		User user = repository.findById(id)
-				.orElseThrow(() -> new UserNotFoundException(id));
+			.orElseThrow(() -> new UserNotFoundException(id));
 		return userResponseAssembler.toModel(user);
 	}
 

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.norgini.dtos.UserRequest;
 import com.norgini.dtos.UserResponse;
 import com.norgini.entities.User;
+import com.norgini.entities.UserStatus;
 import com.norgini.exceptions.UnauthorizedOperationException;
 import com.norgini.services.UserService;
 
@@ -62,6 +63,13 @@ public class UserController {
 	@GetMapping("/{id}")
 	public ResponseEntity<UserResponse> getUser(@PathVariable Long id) {
 		UserResponse user = service.find(id);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null && auth.isAuthenticated() && auth.getPrincipal() instanceof User) {
+			User loggedInUser = (User) auth.getPrincipal();
+			if (loggedInUser.getId().equals(id)) {
+				user.setStatus(UserStatus.ONLINE);
+			}
+		}
 		return ResponseEntity.ok(user);
 	}
 
@@ -69,6 +77,7 @@ public class UserController {
 	public ResponseEntity<User> getMe() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		var user = (User) auth.getPrincipal();
+		user.setStatus(UserStatus.ONLINE);
 		return ResponseEntity.ok(user);
 	}
 
