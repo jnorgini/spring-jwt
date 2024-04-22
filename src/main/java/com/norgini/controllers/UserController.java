@@ -57,6 +57,15 @@ public class UserController {
 	@GetMapping
 	public ResponseEntity<List<UserResponse>> getUsers() {
 		List<UserResponse> users = service.findAll();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null && auth.isAuthenticated() && auth.getPrincipal() instanceof User) {
+			User loggedInUser = (User) auth.getPrincipal();
+			for (UserResponse user : users) {
+				if (user.getId().equals(loggedInUser.getId())) {
+					user.setStatus(UserStatus.ONLINE);
+				}
+			}
+		}
 		return ResponseEntity.ok(users);
 	}
 
