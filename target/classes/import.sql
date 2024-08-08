@@ -1,0 +1,1 @@
+INSERT INTO tb_user (email, first_name, last_name, password, username, role, status) VALUES ('admin@gmail.com', 'admin', 'admin', '$2a$10$AUPQHdc3BIJ.T1R75X5ixeDTZyJoeEXE72uO57xrGPcI74vTRv3Am', 'admin', 'ADMIN', 'OFFLINE');
