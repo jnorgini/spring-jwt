@@ -65,9 +65,9 @@ With the `users/me` endpoint it is possible to receive information about the aut
   <img src="https://github.com/jnorgini/jnorgini/assets/114461353/48bb223f-239b-4623-8231-f5f6b8cadf8a" width="800" height="267" style="margin-bottom: 10px;">
 </div>
 
-## In progress...
+## Deployment
 
-📌 Deployment and [cron jobs](https://cron-job.org/en/) 
+The microservice is available at [Render](https://spring-jwt.onrender.com/). To avoid periods of inactivity, I use cron jobs configured at [Cron-Job.org](https://cron-job.org/en/) with the endpoint `/report/1` for scheduled tasks.
 
 ## Developed by
 
