@@ -1,5 +1,6 @@
 com\norgini\dtos\RefreshTokenRequest.class
 com\norgini\exceptions\UserNotFoundException.class
+com\norgini\entities\Report.class
 com\norgini\dtos\LoginResponse.class
 com\norgini\configs\Mapper.class
 com\norgini\controllers\ClientController.class
@@ -9,6 +10,7 @@ com\norgini\repositories\UserRepository.class
 com\norgini\configs\WebConfig.class
 com\norgini\controllers\LoginController.class
 com\norgini\services\RefreshTokenService.class
+com\norgini\controllers\ReportController.class
 com\norgini\services\TokenService.class
 com\norgini\dtos\LoginRequest.class
 com\norgini\entities\UserStatus.class
@@ -18,8 +20,10 @@ com\norgini\configs\SecurityConfiguration.class
 com\norgini\configs\SecurityFilter.class
 com\norgini\entities\Client.class
 com\norgini\assembler\UserResponseAssembler.class
+com\norgini\repositories\ReportRepository.class
 com\norgini\repositories\RefreshTokenRepository.class
 com\norgini\repositories\ClientRepository.class
+com\norgini\services\ReportService.class
 com\norgini\dtos\UserRequest.class
 com\norgini\exceptions\UnauthorizedOperationException.class
 com\norgini\entities\RefreshToken.class

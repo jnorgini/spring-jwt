@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.norgini.SpringJwtApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.387 s -- in com.norgini.SpringJwtApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.352 s -- in com.norgini.SpringJwtApplicationTests

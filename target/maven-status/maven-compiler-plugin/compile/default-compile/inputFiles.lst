@@ -4,16 +4,19 @@ C:\Users\jnorg\Desktop\ADS\STS4\workspace\spring_jwt\src\main\java\com\norgini\e
 C:\Users\jnorg\Desktop\ADS\STS4\workspace\spring_jwt\src\main\java\com\norgini\assembler\UserResponseAssembler.java
 C:\Users\jnorg\Desktop\ADS\STS4\workspace\spring_jwt\src\main\java\com\norgini\SpringJwtApplication.java
 C:\Users\jnorg\Desktop\ADS\STS4\workspace\spring_jwt\src\main\java\com\norgini\entities\Role.java
+C:\Users\jnorg\Desktop\ADS\STS4\workspace\spring_jwt\src\main\java\com\norgini\repositories\ReportRepository.java
 C:\Users\jnorg\Desktop\ADS\STS4\workspace\spring_jwt\src\main\java\com\norgini\dtos\UserResponse.java
 C:\Users\jnorg\Desktop\ADS\STS4\workspace\spring_jwt\src\main\java\com\norgini\assembler\UserRequestDisassembler.java
 C:\Users\jnorg\Desktop\ADS\STS4\workspace\spring_jwt\src\main\java\com\norgini\configs\Mapper.java
 C:\Users\jnorg\Desktop\ADS\STS4\workspace\spring_jwt\src\main\java\com\norgini\services\UserService.java
+C:\Users\jnorg\Desktop\ADS\STS4\workspace\spring_jwt\src\main\java\com\norgini\services\ReportService.java
 C:\Users\jnorg\Desktop\ADS\STS4\workspace\spring_jwt\src\main\java\com\norgini\dtos\LoginResponse.java
 C:\Users\jnorg\Desktop\ADS\STS4\workspace\spring_jwt\src\main\java\com\norgini\assembler\ClientRequestDisassembler.java
 C:\Users\jnorg\Desktop\ADS\STS4\workspace\spring_jwt\src\main\java\com\norgini\advice\HandlerAdvice.java
 C:\Users\jnorg\Desktop\ADS\STS4\workspace\spring_jwt\src\main\java\com\norgini\dtos\ClientResponse.java
 C:\Users\jnorg\Desktop\ADS\STS4\workspace\spring_jwt\src\main\java\com\norgini\configs\WebConfig.java
 C:\Users\jnorg\Desktop\ADS\STS4\workspace\spring_jwt\src\main\java\com\norgini\repositories\UserRepository.java
+C:\Users\jnorg\Desktop\ADS\STS4\workspace\spring_jwt\src\main\java\com\norgini\entities\Report.java
 C:\Users\jnorg\Desktop\ADS\STS4\workspace\spring_jwt\src\main\java\com\norgini\dtos\ClientRequest.java
 C:\Users\jnorg\Desktop\ADS\STS4\workspace\spring_jwt\src\main\java\com\norgini\configs\LoginEntryPoint.java
 C:\Users\jnorg\Desktop\ADS\STS4\workspace\spring_jwt\src\main\java\com\norgini\assembler\ClientResponseAssembler.java
@@ -35,3 +38,4 @@ C:\Users\jnorg\Desktop\ADS\STS4\workspace\spring_jwt\src\main\java\com\norgini\c
 C:\Users\jnorg\Desktop\ADS\STS4\workspace\spring_jwt\src\main\java\com\norgini\entities\User.java
 C:\Users\jnorg\Desktop\ADS\STS4\workspace\spring_jwt\src\main\java\com\norgini\entities\RefreshToken.java
 C:\Users\jnorg\Desktop\ADS\STS4\workspace\spring_jwt\src\main\java\com\norgini\repositories\RefreshTokenRepository.java
+C:\Users\jnorg\Desktop\ADS\STS4\workspace\spring_jwt\src\main\java\com\norgini\controllers\ReportController.java
